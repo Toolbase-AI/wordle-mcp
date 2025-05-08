@@ -107,7 +107,7 @@ export class UserGame extends Agent<Env, GameState> {
     if (gameState.status === "won") {
       responseText += `Congratulations! You've guessed the word in ${attemptNumber} attempts.`;
     } else if (gameState.status === "lost") {
-      responseText += `Game over! The word was ${targetWord.toUpperCase()}.`;
+      responseText += `Game over! You have used all your attempts for today's word.`;
     }
 
     this.setState({
