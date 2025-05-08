@@ -5,21 +5,51 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "wordle-mcp",
-	"main": "src/index.ts",
+	"main": "src/worker/index.ts",
 	"compatibility_date": "2025-03-10",
 	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"run_worker_first": true,
+		"not_found_handling": "single-page-application",
+		"binding": "ASSETS"
+	},
 	"migrations": [
 		{
-			"new_sqlite_classes": ["MyMCP"],
+			"new_sqlite_classes": ["UserGameMCP", "UserGame"],
 			"tag": "v1"
+		}
+	],
+	"ai": {
+    	"binding": "AI"
+  	},
+	"kv_namespaces": [
+    	{
+			"binding": "WORDLE_KV",
+			"id": "cf3ae1b98081497080cffb58564cbbfa"
+		}
+	],
+	"d1_databases": [
+    	{
+      		"binding": "DB",
+      		"database_name": "wordle-mcp-prod",
+      		"database_id": "b0ea4374-280e-439d-b7ba-22f32012cd77"
 		}
 	],
 	"durable_objects": {
 		"bindings": [
 			{
-				"class_name": "MyMCP",
+				"class_name": "UserGameMCP",
 				"name": "MCP_OBJECT"
+			},
+			{
+				"class_name": "UserGame",
+				"name": "USER_GAME"
 			}
+		]
+	},
+	"triggers": {
+		"crons": [
+			"0 0 * * *"
 		]
 	},
 	"observability": {

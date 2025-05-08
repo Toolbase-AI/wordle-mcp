@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.js";
+
+:root {
+    --background: 39 45% 86%;
+    --foreground: 0 0% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+    --primary: 33 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 95% 56%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 46%;
+    --muted-foreground: 0 0% 46%;
+    --accent: 40 95% 56%;
+    --accent-foreground: 0 0% 13%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 33 100% 50%;
+    --radius: 0.5rem;
+}
+
+* {
+    @apply border-border;
+  }
+
+body {
+    @apply bg-background text-foreground;
+
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+  @keyframes logoFloat {
+    0%, 100% {
+      transform: translateY(0) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotateY(5deg);
+    }
+  }
+
+  .logo-animation {
+    animation: fadeInScale 0.6s ease-out forwards, logoFloat 3s ease-in-out infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+
+  
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-animation {
+      animation: none;
+    }
+}
