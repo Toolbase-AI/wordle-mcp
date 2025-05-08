@@ -4,6 +4,7 @@ import { DownloadButtons } from "./DownloadButtons";
 import { Link } from "./Link";
 import { Button } from "./Button";
 import { IoCopyOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
+import { FaGithub } from "react-icons/fa";
 
 const TABS = [
   {
@@ -64,7 +65,7 @@ export function Home() {
         <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
           Wordle MCP
         </h1>
-        <div className="flex flex-col items-center mb-6">
+        <div className="flex flex-col items-center gap-4 mb-6">
           <h2 className="text-lg text-gray-600 mb-2">
             powered by{" "}
             <Link
@@ -75,6 +76,15 @@ export function Home() {
               Toolbase
             </Link>
           </h2>
+
+          <Link
+            href="https://github.com/Toolbase-AI/wordle-mcp"
+            external
+            className="view-github-link inline-flex items-center gap-2"
+          >
+            <FaGithub className="h-5 w-5" />
+            <span>GitHub</span>
+          </Link>
         </div>
         <div className="w-full max-w-lg mx-auto bg-white rounded-2xl shadow-lg p-6 min-h-[320px]">
           <div className="flex mb-4 border-b border-accent-100">
