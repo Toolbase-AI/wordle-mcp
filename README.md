@@ -4,14 +4,14 @@ Play Wordle with your LLM companion and see who is the best in the world.
 
 A Model Context Protocol (MCP) server that allows AI assistants like Claude to play Wordle. 
 
-Every 24 hours, the word is reset for you to keep climbing the leaderboard.
+Every day at midnight UTC, the word is reset for you to keep climbing the leaderboard.
 
 If you need a hint, feel free to pay me a Blue Bottle coffee.
 
 ## Built with:
 * Stripe for hint payments
 * Clerk for auth
-* Cloudflare Workers, Workers AI, Agents, DO, KV, D1 do basically all the lifting
+* Cloudflare Workers, Workers AI, Agents, DO, KV, D1 for basically all the heavy lifting
 
 ## 🎮 Features
 
@@ -92,7 +92,7 @@ pnpm build
 The project is configured to deploy to Cloudflare Workers. Deploy using:
 
 ```bash
-pnpm deploy
+pnpm run deploy
 ```
 
 ## 📝 License
@@ -102,4 +102,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## 🙏 Acknowledgements
 
 - [Cloudflare Workers](https://workers.cloudflare.com/)
-- [Toolbase](https://gettoolbase.ai)
+- [Clerk](https://clerk.com)
+- [Stripe](https://stripe.com/)
