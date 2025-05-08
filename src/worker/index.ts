@@ -330,7 +330,7 @@ const app = new Hono<{ Bindings: Env }>()
       return UserGameMCP.serveSSE("/sse").fetch(c, env, executionCtx);
     })
   )
-  // Streamless
+  // Streaming
   .use("/mcp/*", clerkAuthMiddleware)
   .route(
     "/mcp",
