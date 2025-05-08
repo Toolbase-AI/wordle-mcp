@@ -1,50 +1,105 @@
-# Building a Remote MCP Server on Cloudflare (Without Auth)
+# Wordle MCP
 
-This example allows you to deploy a remote MCP server that doesn't require authentication on Cloudflare Workers. 
+Play Wordle with your LLM companion and see who is the best in the world.
 
-## Get started: 
+A Model Context Protocol (MCP) server that allows AI assistants like Claude to play Wordle. 
 
-[![Deploy to Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/ai/tree/main/demos/remote-mcp-authless)
+Every 24 hours, the word is reset for you to keep climbing the leaderboard.
 
-This will deploy your MCP server to a URL like: `remote-mcp-server-authless.<your-account>.workers.dev/sse`
+If you need a hint, feel free to pay me a Blue Bottle coffee.
 
-Alternatively, you can use the command line below to get the remote MCP Server created on your local machine:
+## Built with:
+* Stripe for hint payments
+* Clerk for auth
+* Cloudflare Workers, Workers AI, Agents, DO, KV, D1 do basically all the lifting
+
+## 🎮 Features
+
+- Multiple connection methods:
+  - Direct SSE connection
+  - Local MCP client connection
+  - Toolbase desktop app integration
+- Daily word updates
+- Hint system with Stripe integration
+- Persistent game state
+
+## 🚀 Quick Start
+
+### Using Toolbase Desktop
+
+1. Download and install [Toolbase](https://gettoolbase.ai)
+2. Open Toolbase and connect to Wordle
+3. Start playing Wordle with Claude!
+
+### Using Local MCP Client
+
 ```bash
-npm create cloudflare@latest -- my-mcp-server --template=cloudflare/ai/demos/remote-mcp-authless
+npx mcp-remote https://wordle.gettoolbase.ai/mcp
 ```
 
-## Customizing your MCP Server
+### Using SSE Directly
 
-To add your own [tools](https://developers.cloudflare.com/agents/model-context-protocol/tools/) to the MCP server, define each tool inside the `init()` method of `src/index.ts` using `this.server.tool(...)`. 
-
-## Connect to Cloudflare AI Playground
-
-You can connect to your MCP server from the Cloudflare AI Playground, which is a remote MCP client:
-
-1. Go to https://playground.ai.cloudflare.com/
-2. Enter your deployed MCP server URL (`remote-mcp-server-authless.<your-account>.workers.dev/sse`)
-3. You can now use your MCP tools directly from the playground!
-
-## Connect Claude Desktop to your MCP server
-
-You can also connect to your remote MCP server from local MCP clients, by using the [mcp-remote proxy](https://www.npmjs.com/package/mcp-remote). 
-
-To connect to your MCP server from Claude Desktop, follow [Anthropic's Quickstart](https://modelcontextprotocol.io/quickstart/user) and within Claude Desktop go to Settings > Developer > Edit Config.
-
-Update with this configuration:
-
-```json
-{
-  "mcpServers": {
-    "calculator": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "http://localhost:8787/sse"  // or remote-mcp-server-authless.your-account.workers.dev/sse
-      ]
-    }
-  }
-}
+```
+https://wordle.gettoolbase.ai/sse
 ```
 
-Restart Claude and you should see the tools become available. 
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
+- Cloudflare account
+- Stripe account (for hint system)
+- Clerk account (for authentication)
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/wordle-mcp.git
+cd wordle-mcp
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Set up environment variables in `.dev.vars`:
+```env
+CLERK_INSTANCE_URL="your-clerk-url"
+CLERK_SECRET_KEY="your-clerk-key"
+CLERK_BACKEND_URL="clerk-backend-url"
+HINT_SUCCESS_URL="your-success-url"
+STRIPE_SECRET_KEY="your-stripe-key"
+HINT_PRICE_ID="your-price-id"
+```
+
+4. Start the development server:
+```bash
+pnpm dev
+```
+
+### Building
+
+```bash
+pnpm build
+```
+
+### Deployment
+
+The project is configured to deploy to Cloudflare Workers. Deploy using:
+
+```bash
+pnpm deploy
+```
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## 🙏 Acknowledgements
+
+- [Cloudflare Workers](https://workers.cloudflare.com/)
+- [Toolbase](https://gettoolbase.ai)
