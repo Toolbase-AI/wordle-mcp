@@ -33,14 +33,14 @@ export class UserGame extends Agent<Env, GameState> {
           UPDATE Users SET username = ? WHERE user_id = ?
         `
     )
-      .bind(displayName, this.state.user.userId)
+      .bind(displayName || "Anonymous", this.state.user.userId)
       .run();
 
     this.setState({
       ...this.state,
       user: {
         ...this.state.user,
-        username: displayName ?? undefined,
+        username: displayName || "Anonymous",
       },
     });
   }
@@ -51,14 +51,14 @@ export class UserGame extends Agent<Env, GameState> {
           UPDATE Users SET x_handle = ? WHERE user_id = ?
         `
     )
-      .bind(xHandle, this.state.user.userId)
+      .bind(xHandle || null, this.state.user.userId)
       .run();
 
     this.setState({
       ...this.state,
       user: {
         ...this.state.user,
-        xHandle: xHandle ?? undefined,
+        xHandle: xHandle || undefined,
       },
     });
   }
