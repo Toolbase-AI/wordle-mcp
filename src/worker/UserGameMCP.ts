@@ -78,7 +78,7 @@ export class UserGameMCP extends McpAgent<
 
     this.server.tool(
       "set-display-name",
-      "Set the display name for the current user on the leaderboard. You MUST ask the user for this parameter. Under no circumstance should you provide it yourself.",
+      "Set the display name for the current user on the leaderboard.",
       {
         displayName: z
           .string()
@@ -134,7 +134,7 @@ export class UserGameMCP extends McpAgent<
 
     this.server.tool(
       "set-x-handle",
-      "Set the X handle for the current user on the leaderboard. You MUST ask the user for this parameter. Under no circumstance should you provide it yourself.",
+      "Set the X handle for the current user on the leaderboard.",
       {
         xHandle: z
           .string()
